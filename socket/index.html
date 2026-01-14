@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hey</h1>
+    <script type="module">
+      import { io } from 'https://cdn.socket.io/4.8.1/socket.io.esm.min.js'
+
+      const socket = io('http://localhost:3000')
+      const element = document.querySelector('#send')
+
+      element.addEventListener('click', () => {
+        socket.emit('whatsapp', 'Hello Wpp!')
+      })
+
+      socket.on('whatsapp', data => {
+        console.log('📩 Mensaje recibido Desde el servidor:', data)
+      })
+    </script>
+
+    <button id="send">Send</button>
+  </body>
+</html>
